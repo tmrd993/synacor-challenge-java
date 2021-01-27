@@ -6,9 +6,9 @@ public class InstructionFactory {
 
     private InstructionFactory() {
     }
-    
+
     public static Instruction getInstruction(int opCodeId, VirtualMachine virtualMachine) {
-	switch(opCodeId) {
+	switch (opCodeId) {
 	case 0:
 	    return new Halt(virtualMachine);
 	case 1:
@@ -49,9 +49,8 @@ public class InstructionFactory {
 	    return new Ret(virtualMachine);
 	case 19:
 	    return new Out(virtualMachine);
-	//TODO: OPCode 20:
-	//case 20:
-	  //return new In(virtualMachine);
+	case 20:
+	    return new In(virtualMachine);
 	case 21:
 	    return new NoOp(virtualMachine);
 	default:

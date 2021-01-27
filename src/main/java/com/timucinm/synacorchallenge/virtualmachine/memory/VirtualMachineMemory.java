@@ -1,5 +1,7 @@
 package com.timucinm.synacorchallenge.virtualmachine.memory;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 public class VirtualMachineMemory {
@@ -8,11 +10,13 @@ public class VirtualMachineMemory {
     private final int[] REGISTERS;
     private final int[] MEMORY;
     private final Stack<Integer> STACK;
+    private Queue<Integer> inputValues;
 
     public VirtualMachineMemory() {
 	REGISTERS = new int[NUM_OF_REGISTERS];
 	MEMORY = new int[MEM_SIZE];
 	STACK = new Stack<>();
+	inputValues = new LinkedList<>();
     }
 
     public int getTotalMemorySize() {
@@ -41,6 +45,18 @@ public class VirtualMachineMemory {
     
     public void setMemory(int index, int value) {
 	MEMORY[index] = value;
+    }
+    
+    public void setInput(int in) {
+	inputValues.add(in);
+    }
+    
+    public int pollInput() {
+	return inputValues.poll();
+    }
+    
+    public boolean inputQueueIsEmpty() {
+	return inputValues.isEmpty();
     }
    
     private boolean isRegisterIndex(int index) {

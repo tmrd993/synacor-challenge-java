@@ -14,7 +14,8 @@ import com.timucinm.synacorchallenge.virtualmachine.memory.VirtualMachineMemory;
 public class VirtualMachine {
     private final VirtualMachineMemory VIRTUAL_MACHINE_MEMORY;
     private int instructionPointer;
-    private boolean isHalted;
+    private boolean hasHalted;
+    private boolean isOnStandby;
 
     public VirtualMachine(File inputBinary) {
 	instructionPointer = 0;
@@ -31,17 +32,35 @@ public class VirtualMachine {
     }
 
     public void halt() {
-	isHalted = true;
+	hasHalted = true;
+    }
+    
+    public boolean hasHalted() {
+	return hasHalted;
+    }
+    
+    public boolean isOnStandby() {
+	return isOnStandby;
     }
 
     public void run() {
-	while(!isHalted) {
+	isOnStandby = false;
+	while(!hasHalted && !isOnStandby) {
 	    int opCode = VIRTUAL_MACHINE_MEMORY.getFromMainMemory(instructionPointer);
 	    Instruction instruction = InstructionFactory.getInstruction(opCode, this);
 	    instruction.execute();
 	    instructionPointer = instruction.getNextInstructionPointerPosition();
-	    
 	}
+    }
+    
+    // reads the argument as input for the virtual machine
+    public void readInputln(String input) {
+	input = input + "\n";
+	input.chars().forEach(character -> VIRTUAL_MACHINE_MEMORY.setInput(character));
+    }
+    
+    public void setStandby() {
+	isOnStandby = true;
     }
 
     private void initializeMemoryFromBinaryFile(File inputBinary) {
