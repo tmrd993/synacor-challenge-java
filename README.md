@@ -10,5 +10,5 @@ Found 3/8 codes. Virtual machine is finished and passes all self-checks.
 3. run the virtual machine (constructor expects the binary file as input)
 
 ## Next steps
-Implement save/load mechanism
-Add stepping for easier debugging
+Implement save/load mechanism  
+Add stepping for easier debugging  
