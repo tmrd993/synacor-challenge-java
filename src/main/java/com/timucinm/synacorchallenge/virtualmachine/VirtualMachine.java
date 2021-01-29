@@ -4,6 +4,7 @@ import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.Serializable;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
@@ -11,7 +12,8 @@ import com.timucinm.synacorchallenge.virtualmachine.instructions.Instruction;
 import com.timucinm.synacorchallenge.virtualmachine.instructions.InstructionFactory;
 import com.timucinm.synacorchallenge.virtualmachine.memory.VirtualMachineMemory;
 
-public class VirtualMachine {
+public class VirtualMachine implements Serializable {
+    private static final long serialVersionUID = -8124619722148427716L;
     private final VirtualMachineMemory VIRTUAL_MACHINE_MEMORY;
     private int instructionPointer;
     private boolean hasHalted;

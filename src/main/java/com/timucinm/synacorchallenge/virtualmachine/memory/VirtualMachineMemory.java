@@ -1,10 +1,12 @@
 package com.timucinm.synacorchallenge.virtualmachine.memory;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
-public class VirtualMachineMemory {
+public class VirtualMachineMemory implements Serializable {
+    private static final long serialVersionUID = -4938299303662314684L;
     private final int MEM_SIZE = 32768;
     private final int NUM_OF_REGISTERS = 8;
     private final int[] REGISTERS;
