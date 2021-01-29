@@ -85,7 +85,7 @@ public class App {
 	} catch (Exception e) {
 	    e.printStackTrace();
 	}
-	throw new NoSuchElementException("Save data could not be loaded.");
+	return null;
     }
     
     private static VirtualMachine loadMachineState() throws Exception {
